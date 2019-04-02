@@ -27,10 +27,10 @@ object twitter {
     val kafkaProducer = new KafkaProducer[String, String](props)
 
 
-    val consumerKey = "r0TsOaLZjrhauyExpjcv3krSc"
-    val consumerSecretKey = "RKW1cr2aqiou6eVBjfMqxoW54vR8Mdy7Y4bg9wZZgoZdZZFp7P"
-    val accessToken = "2477916680-aM5EPz5S7nCa9fyNdReANHMKofE5nlVYVuVxgcY"
-    val accessTokenSecret = "SZpr3kI6F4uQ70lnkTru5GEOcdeqpmoWXMfSal6eFRCgR"
+    val consumerKey = "r0c"
+    val consumerSecretKey = "RKZFp7P"
+    val accessToken = "24xgcY"
+    val accessTokenSecret = "SZRCgR"
 
 
     val cb = new ConfigurationBuilder
