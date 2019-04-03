@@ -10,11 +10,8 @@ import org.apache.kafka.clients.producer.{KafkaProducer, ProducerConfig, Produce
 object twitter {
 
   def main(args: Array[String]) {
-//
-//    val appName = "TwitterData"
-//    val conf = new SparkConf()
-//    conf.setAppName(appName).setMaster("local[2]")
-//    val ssc = new StreamingContext(conf, Seconds(5))
+
+// settings for kafka connection
     val props = new Properties()
     props.put("bootstrap.servers", "localhost:9091")
     props.put("acks", "all")
@@ -25,8 +22,8 @@ object twitter {
     props.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer")
     props.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer")
     val kafkaProducer = new KafkaProducer[String, String](props)
-
-
+    
+    // below four variables are api keys and secrect you need to get from twitter 
     val consumerKey = "r0c"
     val consumerSecretKey = "RKZFp7P"
     val accessToken = "24xgcY"
@@ -40,10 +37,8 @@ object twitter {
       .setOAuthAccessTokenSecret(accessTokenSecret)
 
 
-//    val auth = new OAuthAuthorization(cb.build)
-//    println(auth)
 
-
+// get twitter data and push data to kafka
       val twitterStream = new TwitterStreamFactory(cb.build).getInstance()
 
       val listener = new StatusListener() {
@@ -60,7 +55,7 @@ object twitter {
 
 
     twitterStream.addListener(listener)
-
+// add a filter
     val query = new FilterQuery().track("China")
     twitterStream.filter(query)
 //    Thread.sleep(5000)
